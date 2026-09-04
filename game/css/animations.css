@@ -1,0 +1,228 @@
+/* ========================================
+   SPEC-IR Bluetooth サバイバルゲーム
+   Animations Stylesheet
+   ======================================== */
+
+
+/* ========================================
+   @keyframes 定義
+   ======================================== */
+
+/* HP危険時点滅 */
+@keyframes criticalPulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.7;
+    filter: brightness(1.2);
+  }
+}
+
+/* DOWNフラッシュ演出 */
+@keyframes downFlash {
+  0% {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  20% {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+}
+
+/* ログフェードイン */
+@keyframes logFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 接続成功発光 */
+@keyframes connectSuccess {
+  0% {
+    box-shadow: var(--shadow-soft);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(34, 197, 94, 0.6), var(--shadow-soft);
+  }
+  100% {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* ボタンプレス */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.96);
+  }
+}
+
+/* 弾数空点滅 */
+@keyframes ammoEmpty {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* リロード点滅 */
+@keyframes reloadBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* 接続中パルス */
+@keyframes connectingPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 軽いシェイク（ダメージ時用） */
+@keyframes damageShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+
+/* ========================================
+   HP危険時点滅
+   ======================================== */
+
+.health-bar__fill--critical {
+  animation: criticalPulse 1.2s ease-in-out infinite;
+}
+
+.hp-total--critical .hp-total__fill {
+  animation: criticalPulse 1.2s ease-in-out infinite;
+}
+
+
+/* ========================================
+   DOWNフラッシュ演出
+   ======================================== */
+
+.state-down .overlay {
+  animation: downFlash 0.6s ease-out forwards;
+}
+
+
+/* ========================================
+   ログフェードイン
+   ======================================== */
+
+.log-item {
+  animation: logFadeIn 0.3s ease-out;
+}
+
+
+/* ========================================
+   接続成功発光
+   ======================================== */
+
+.connect-panel--connected {
+  animation: connectSuccess 1s ease-out;
+}
+
+
+/* ========================================
+   接続中パルス
+   ======================================== */
+
+.connect-status--connecting {
+  animation: connectingPulse 1.5s ease-in-out infinite;
+}
+
+
+/* ========================================
+   弾数空点滅
+   ======================================== */
+
+.ammo-count--empty {
+  animation: ammoEmpty 1s ease-in-out infinite;
+}
+
+
+/* ========================================
+   リロード点滅
+   ======================================== */
+
+.reload-indicator {
+  animation: reloadBlink 0.8s ease-in-out infinite;
+}
+
+
+/* ========================================
+   ボタン押下
+   ======================================== */
+
+.button:active:not(:disabled) {
+  animation: buttonPress 0.1s ease-out forwards;
+}
+
+
+/* ========================================
+   ダメージ演出
+   ======================================== */
+
+.health-part--damaged {
+  animation: damageShake 0.3s ease-out;
+}
+
+
+/* ========================================
+   パフォーマンス最適化
+   ======================================== */
+
+/* アニメーション対象要素にwill-changeを適用 */
+.health-bar__fill--critical,
+.hp-total--critical .hp-total__fill,
+.state-down .overlay,
+.log-item,
+.ammo-count--empty,
+.reload-indicator {
+  will-change: opacity, transform;
+}
+
+/* アニメーション終了後にwill-changeを解除 */
+.connect-panel--connected {
+  will-change: box-shadow;
+}
+
+/* ユーザーが動きを減らす設定をしている場合はアニメーション無効化 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

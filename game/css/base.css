@@ -1,0 +1,258 @@
+/* ========================================
+   SPEC-IR Bluetooth サバイバルゲーム
+   Base Stylesheet
+   ======================================== */
+
+
+/* ========================================
+   リセット（最低限）
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ========================================
+   ルート要素
+   ======================================== */
+
+html {
+  height: 100%;
+  font-size: 16px; /* ベースフォントサイズ */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  color: var(--color-text-main);
+  background: var(--bg-gradient-main);
+  overflow-x: hidden; /* 横スクロール禁止 */
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   見出し
+   ======================================== */
+
+h1,
+h2,
+h3 {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em; /* 文字間を少し広く */
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+
+/* ========================================
+   テキスト要素
+   ======================================== */
+
+p {
+  color: var(--color-text-sub);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-highlight);
+  text-decoration: underline;
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+}
+
+em,
+i {
+  font-style: italic;
+  color: var(--color-text-sub);
+}
+
+
+/* ========================================
+   リスト
+   ======================================== */
+
+ul,
+ol {
+  list-style-position: inside; /* リストマーカーを内側に */
+  padding: 0; /* 無駄な左余白を削除 */
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-sub);
+}
+
+
+/* ========================================
+   ボタン（汎用）
+   ======================================== */
+
+button {
+  font-family: inherit; /* フォント継承 */
+  font-size: inherit;
+  color: var(--color-text-main);
+  background-color: var(--color-highlight);
+  border-radius: var(--border-radius-medium);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  outline: none;
+}
+
+button:hover {
+  background-color: #e5e5e5;
+}
+
+/* ========================================
+   フォーム要素
+   ======================================== */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-panel);
+  border: var(--border-width-thin) solid var(--border-color-default);
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   メディア要素
+   ======================================== */
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block; /* 表示崩れ防止 */
+}
+
+img {
+  border-radius: var(--border-radius-small);
+}
+
+
+/* ========================================
+   スクロールバー（Webkit系）
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color-default);
+  border-radius: var(--border-radius-small);
+  transition: var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color-light);
+}
+
+
+/* ========================================
+   選択テキスト
+   ======================================== */
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-main);
+}
+
+::-moz-selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-main);
+}
+
+
+/* ========================================
+   ユーティリティクラス（最小限）
+   ======================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}

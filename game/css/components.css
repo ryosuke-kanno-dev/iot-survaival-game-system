@@ -1,0 +1,529 @@
+/* ========================================
+   SPEC-IR Bluetooth サバイバルゲーム
+   Components Stylesheet
+   ======================================== */
+/* ========================================
+   戦績データ表示
+   ======================================== */
+
+.playing-stats {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  min-width: 160px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.playing-stats.passive {
+  position: static;
+  height: fit-content;
+  width: fit-content;
+  justify-self: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* 各ステータス行 */
+.playing-stats .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ラベル */
+.playing-stats .stat-label {
+  font-size: 12px;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
+
+/* 値 */
+.playing-stats .stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #00ffcc;
+  text-shadow: 0 0 6px rgba(0, 255, 204, 0.6);
+}
+
+/* PLAYING中のみ表示制御したい場合用 */
+.playing-stats.hidden {
+  display: none;
+}
+
+.playing-stats.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.playing-stats.fade-out {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+
+/* ========================================
+   弾数表示
+   ======================================== */
+
+.ammo {
+  margin-bottom: var(--spacing-md);
+}
+
+.ammo__container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.ammo-box {
+  width: 180px;
+  height: 80px;
+  background-color: var(--color-bg-ammo);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.ammo__label {
+  color: var(--color-text-sub);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.ammo__value {
+  color: var(--color-text-main);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  margin: 0;
+}
+
+/* ========================================
+   接続UI（OFF画面）
+   ======================================== */
+
+.connection-section {
+  background: var(--color-bg-panel);
+  border: var(--border-width-thin) solid var(--border-color-default);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-strong);
+  width: 100%;
+}
+
+.connection-button {
+  background: var(--bg-gradient-accent);
+  color: var(--color-text-main);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-normal);
+  width: 100%;
+  text-align: center;
+}
+
+.connection-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+.connection-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.device-status {
+  padding: var(--spacing-md);
+  background: var(--color-bg-dark);
+  border-radius: var(--border-radius-small);
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.device-label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.status-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-danger);
+  transition: background-color 0.3s ease;
+}
+
+.device.disconnected .status-icon {
+  background: var(--color-danger);
+}
+
+.device.connected .status-icon {
+  background: var(--color-success);
+}
+
+.device.error .status-icon {
+  background: var(--color-danger);
+}
+
+.device.connecting .status-icon {
+  background: var(--color-warning);
+}
+
+.device.disconnected {
+  color: var(--color-accent);
+}
+
+.device.connected {
+  color: var(--color-success);
+}
+
+.device.error {
+  color: var(--color-danger);
+}
+
+/* =========================
+   HUMAN BODY COMPONENT
+========================= */
+.human-body {
+  height: 300px;
+  position: relative;
+}
+
+.body-visual {
+  width: 100px;
+  height: 200px;
+  position: relative;
+  margin: 30px auto 0;
+}
+
+.body-part {
+  position: absolute;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+/* 頭 */
+.body-part.head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 0;
+  left: 25px;
+}
+
+/* 胴体 */
+.body-part.torso {
+  width: 60px;
+  height: 100px;
+  top: 50px;
+  left: 20px;
+}
+
+/* 腕 */
+.body-part.leftarm, .body-part.rightarm {
+  width: 20px;
+  height: 70px;
+  top: 50px;
+}
+
+.body-part.leftarm { left: 0; }
+.body-part.rightarm { left: 80px; }
+
+/* 脚 */
+.body-part.leftleg, .body-part.rightleg {
+  width: 30px;
+  height: 80px;
+  top: 150px;
+}
+
+.body-part.leftleg { left: 20px; }
+.body-part.rightleg { left: 50px; }
+
+/*図形と数値をつなぐ線*/
+.line-head{
+  transform: rotate(156deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 25px 0px 0px -36px;
+  padding: 0;
+}
+
+.line-torso{
+  transform: rotate(156deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 0px 0px 0px 31px;
+  padding: 0;
+}
+
+.line-leftarm{
+  transform: rotate(110deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 47px 0px 0px -25px;
+  padding: 0;
+}
+
+.line-rightarm{
+  transform: rotate(70deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 52px 0px 0px -15px;
+  padding: 0;
+}
+
+.line-leftleg{
+  transform: rotate(156deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 44px 0px 0px -32px;
+  padding: 0;
+}
+
+.line-rightleg{
+  transform: rotate(24deg);
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 49px 0px 0px 4px;
+  padding: 0;
+}
+
+/*HP表記(数値)*/
+.body-hp {
+  position: absolute;
+  left: 350px;
+  margin-top: -200px;
+}
+
+.body-hp-item {
+  margin-bottom: 8px;
+  border-bottom: 2px solid #fff;
+}
+
+.body-hp-item.head {
+  margin-top: 10px;
+  margin-left: -195px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+.body-hp-item.torso {
+  margin-top: -30px;
+  margin-right: -170px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+.body-hp-item.leftarm {
+  margin-top: 50px;
+  margin-left: -195px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+.body-hp-item.rightarm {
+  margin-top: -30px;
+  margin-right: -170px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+.body-hp-item.leftleg {
+  margin-top: 50px;
+  margin-left: -195px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+.body-hp-item.rightleg {
+  margin-top: -30px;
+  margin-right: -170px;
+  width: 88.958px;
+  border-bottom: 3px solid #fff;
+}
+
+/*トータル*/
+.total{
+  display: flex;
+  margin-top: -60px;
+  justify-content: center;
+}
+
+.total-hp-color {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+}
+
+.is-high  { background-color: var(--hp-blue); }
+.is-mid   { background-color: var(--hp-green); }
+.is-low   { background-color: var(--hp-yellow); }
+.is-zero  { background-color: var(--hp-red); }
+
+/* ========================================
+   HPバー色分け
+   ======================================== */
+.hp-progress {
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+}
+
+.hp-bar {
+  flex: 1;
+  text-align-last: center;
+  transition: width 0.5s ease-in-out;
+}
+
+.is-blue {
+  background-color: var(--hp-blue);
+}
+.is-green {
+  background-color: var(--hp-green);
+}
+.is-yellow {
+  background-color: var(--hp-yellow);
+}
+.is-red {
+  background-color: var(--hp-red);
+}
+
+/* ========================================
+   ログ
+   ======================================== */
+
+.log-section {
+  background: var(--color-bg-panel);
+  border: var(--border-width-thin) solid var(--border-color-default);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-strong);
+  width: 100%;
+}
+
+.log-area {
+  margin: 0px 0px 5px 0px;
+  border: 1px solid black;
+  height: 200px;
+  overflow-y: scroll;
+  background-color: dimgrey;
+}
+
+.log-textarea {
+  margin: 10px 0px;
+  width: 450px;
+  height: 50px;
+  background: #bbb;
+}
+
+.log-send {
+  margin: 10px;
+  width: 80px;
+  height: 50px;
+  background: #3b3b3b;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+
+/* ========================================
+   操作ボタン
+   ======================================== */
+.button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  margin: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  border: var(--border-width-thin) solid transparent;
+  max-width: 450px;
+  min-width: 150px;
+  justify-self: center;
+}
+
+.mini-button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  border: var(--border-width-thin) solid transparent;
+}
+
+
+/*使っているかわからない*/
+/* ========================================
+   ログUI色分け
+   ======================================== */
+
+.log-item--damage {
+  border-left-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.log-item--system {
+  border-left-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.log-item--heal {
+  border-left-color: var(--color-success);
+  color: var(--color-success);
+}
+
+
