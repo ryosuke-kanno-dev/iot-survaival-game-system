@@ -1,0 +1,42 @@
+.development {
+  justify-self: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 600px;
+  color: #fff;
+  background: #000;
+}
+
+.development-line-top {
+  width: inherit;
+  display: inline-block;
+  border-bottom: solid 1px #fff;
+  margin-top: 20px;
+}
+
+.development-line-bottom {
+  width: inherit;
+  display: inline-block;
+  border-bottom: solid 1px #fff;
+  margin-bottom: 20px;
+}
+
+.development-head {
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.development-title {
+  color: var(--color-text-sub);
+  line-height: 1.8;
+  margin-top: var(--spacing-md);
+  margin-bottom: 0px;
+}
+
+.development-others {
+  display: inline-grid;
+}
